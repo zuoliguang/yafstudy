@@ -30,7 +30,7 @@
 		        "symfony/var-dumper": "2.6.*"
 		    }
 		}
-		然后运行 composer update 下载代码, 并在 index.php 引入 vendor 目录下的 autoload.php 速度不理想可尝试我共享的镜像 http://composer.fengqi.me.
+		然后运行 composer update 下载代码, 并在 index.php 引入 vendor 目录下的 autoload.php .
 
 		<?php
 
