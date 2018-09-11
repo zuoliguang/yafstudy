@@ -4,19 +4,20 @@
  * @Author: zuoliguang
  * @Date:   2018-09-07 13:17:33
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-10 12:45:37
+ * @Last Modified time: 2018-09-11 09:26:22
  */
 
 class IndexController extends Yaf_Controller_Abstract {
 
 	// 初始化使用 init
-	public function init()
-	{
+	public function init() {
+
 		Yaf_Dispatcher::getInstance()->disableView(); // 控制器 关闭自动加载模板
-	}
-	public function indexAction() {
 
 		header('Content-Type: text/html; charset=utf-8');
+	}
+
+	public function indexAction() {
 
 		// 1、输出变量;
 		// $data = [
@@ -175,9 +176,14 @@ class IndexController extends Yaf_Controller_Abstract {
 
 
 
-
+		
 		//注意: render by Yaf, 如果这里返回 FALSE, Yaf将不会调用自动视图引擎Render模板
         // return false;
+	}
+
+	public function homeAction()
+	{
+		echo "index 默认主页！";
 	}
 
 
