@@ -1,9 +1,15 @@
 可以按照以下步骤来部署和运行程序:
+
 1.请确保机器xiyou_zlg@DESKTOP-TIESFLI已经安装了Yaf框架, 并且已经加载入PHP;
+
 2.把yafstudy目录Copy到Webserver的DocumentRoot目录下;
+
 3.需要在php.ini里面启用如下配置，生产的代码才能正确运行：
+
 	yaf.environ="product"
+
 4.重启Webserver;
+
 5.访问http://yourhost/yafstudy/,出现Hellow Word!, 表示运行成功,否则请查看php错误日志;
 
 6、添加ORM拓展参考地址 https://fengqi.me/php/386.html/comment-page-1
@@ -22,6 +28,7 @@
 		为了方便管理, 建议使用 Composer 管理扩展, 以下示例均使用 Composer.
 
 		安装 Eloquent ORM, 在项目根目录创建 composer.json, 内容如下:
+
 		{
 		    "require": {
 		        "illuminate/database": "5.0.*",
@@ -30,6 +37,7 @@
 		        "symfony/var-dumper": "2.6.*"
 		    }
 		}
+
 		然后运行 composer update 下载代码, 并在 index.php 引入 vendor 目录下的 autoload.php .
 
 		<?php
@@ -46,7 +54,9 @@
 		// 启动程序
 		$app  = new Yaf\Application(ROOT_PATH."/config/application.ini");
 		$app->bootstrap()->run();
+
 		配置数据库信息, application.ini 增加以下内容:
+
 		; database
 		database.driver     = mysql
 		database.host       = 127.0.0.1
@@ -57,10 +67,13 @@
 		database.charset    = utf8
 		database.collation  = utf8_unicode_ci
 		database.prefix     = ""
+
 		这里使用 MySQL 作为示例, Eloquent 支持 MySQL, Postgres, SQL Server, SQLite.
 
 		初始化 Eloquent ORM
+
 		确保应用启动应用方式为 $app->bootstrap()->run(), 关键是 bootstrap() 部分.
+
 		application 目录下添加 Bootstrap.php 文件, 内容如下:
 
 		<?php
@@ -69,8 +82,6 @@
 		use Yaf\Dispatcher;
 		use Yaf\Application;
 		use Yaf\Bootstrap_Abstract;
-		use Illuminate\Events\Dispatcher as LDispatcher;
-		use Illuminate\Container\Container as LContainer;
 		use Illuminate\Database\Capsule\Manager as Capsule;
 
 		class Bootstrap extends Bootstrap_Abstract
@@ -89,16 +100,21 @@
 		    {
 		        $capsule = new Capsule();
 		        $capsule->addConnection($this->config->database->toArray());
-		        $capsule->setEventDispatcher(new LDispatcher(new LContainer));
 		        $capsule->setAsGlobal();
 		        $capsule->bootEloquent();
 		    }
 		}
+
+
 		建立 model
+
 		application 下新建 models 目录, 为了便于控制, 我们新增两个文件:
+
 		基类 EloquentModel.php 便于以后统一控制一些东西
 
-		<?php namespace App\Models;
+		<?php 
+
+		namespace App\Models;
 
 		use Illuminate\Database\Eloquent\Model;
 
@@ -106,9 +122,13 @@
 		{
 		    // todo
 		}
+
+
 		示例 model, User.php
 
-		<?php namespace App\Models;
+		<?php 
+
+		namespace App\Models;
 
 		use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -126,7 +146,10 @@
 		    // 允许批量赋值的字段
 		    protected $fillable = ['name', 'password', 'email'];
 		}
+
+
 		设置 model 自动加载
+
 		在 composer.json 添加 psr-4, 最终内容如下:
 
 		{
@@ -140,6 +163,7 @@
 		        "App\\Models\\": "application/models"
 		    }
 		}
+
 		执行 composer dump-autoload 解析 psr-4.
 
 		测试
@@ -166,6 +190,8 @@
 		        dd($user->toArray()); // dd 放到
 		    }
 		}
+
 		其它使用方式参考官方文档, 或国内爱好者翻译的中文 Eloquent ORM. 如果可能建议直接使用 Laravel.
+		
 		另外这里暂时不演示 Eloquent ORM 另外一个强大的组建 Scheme 的使用. 也没有考虑到 module, 有需要可自行变通.
 		```

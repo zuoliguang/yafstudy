@@ -1,9 +1,13 @@
 1、配置项中添加 配置，原控制器默认为 index 模块
+
   这里新增了 manager 模块
+
   application.modules = "index,manager"
  
 2、application 文件夹下添加 modules 文件夹
+
  分级创建 modules/manager/controllers, modules/manager/views 文件夹，作为控制器,视图结构
 
 3、两个文件夹内结构类似外部 具体查看当前项目
+
   manager 访问方式 ： www.yourhost.com/manager/index/home
