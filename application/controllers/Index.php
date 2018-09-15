@@ -4,7 +4,7 @@
  * @Author: zuoliguang
  * @Date:   2018-09-07 13:17:33
  * @Last Modified by:   zuoliguang
- * @Last Modified time: 2018-09-11 09:26:22
+ * @Last Modified time: 2018-09-15 12:58:46
  */
 
 class IndexController extends Yaf_Controller_Abstract {
@@ -174,7 +174,7 @@ class IndexController extends Yaf_Controller_Abstract {
 		// 15、缓存工具
 
 
-
+		echo "hello world!";
 
 		
 		//注意: render by Yaf, 如果这里返回 FALSE, Yaf将不会调用自动视图引擎Render模板
