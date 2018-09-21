@@ -1,1 +1,9 @@
+yaf 自带代码生成工具，直接将框架简单demo开展项目;
 
+1、参照官方文档 http://www.laruence.com/manual/yaf.install.html
+  安装 yaf.so 拓展
+  
+ 2、脚手架生成项目基础代码
+   使用 https://github.com/zuoliguang/yaf 项目下 执行 `./tools/cg/yaf_cg demo` 
+   则在当前目录下 output 文件夹下 将 demo 拷贝到 nginx 的根路径下 配置项目信息访问即可
+   
